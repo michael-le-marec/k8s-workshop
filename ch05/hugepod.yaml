@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hugepod
+  labels:
+    name: hugepod
+spec:
+  containers:
+  - name: hugepod
+    image: nginx
+    resources:
+      limits:
+        memory: "128G"
+        cpu: "1000"
+      requests:
+        memory: "64G"
+        cpu: "500"

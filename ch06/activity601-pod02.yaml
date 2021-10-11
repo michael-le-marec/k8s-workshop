@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: activity601-pod02
+  labels:
+    team: 'infra'
+    critical: 'y'
+    environment: 'production'
+spec:
+  containers:
+  - name: activity601-pod02
+    image: nginx
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "0.25"

@@ -1,0 +1,10 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: pageview
+  labels:
+    tier: frontend
+spec:
+  containers:
+  - name: pageview
+    image: mlemarec/pageview:v0.0.2

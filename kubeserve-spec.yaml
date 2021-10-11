@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "2"
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{},"labels":{"app":"kubeserve"},"name":"kubeserve","namespace":"default"},"spec":{"replicas":3,"selector":{"matchLabels":{"app":"kubeserve"}},"template":{"metadata":{"labels":{"app":"kubeserve"}},"spec":{"containers":[{"image":"nginx","name":"nginx","ports":[{"containerPort":80}],"resources":{"limits":{"cpu":"500m","memory":"128Mi"}}}]}}}}
+    kubernetes.io/change-cause: kubectl.exe set image deployment/kubeserve nginx=nginx:1.9.1
+      --record=true
+  creationTimestamp: "2021-09-29T09:59:28Z"
+  generation: 2
+  labels:
+    app: kubeserve
+  name: kubeserve
+  namespace: default
+  resourceVersion: "62645"
+  uid: c9db7803-5bc9-4a8d-82db-4ee1ba8c94cf
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 3
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: kubeserve
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: kubeserve
+    spec:
+      containers:
+      - image: nginx:1.9.1
+        imagePullPolicy: Always
+        name: nginx
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 500m
+            memory: 128Mi
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status:
+  availableReplicas: 2
+  conditions:
+  - lastTransitionTime: "2021-09-29T09:59:28Z"
+    lastUpdateTime: "2021-09-29T09:59:28Z"
+    message: Deployment does not have minimum availability.
+    reason: MinimumReplicasUnavailable
+    status: "False"
+    type: Available
+  - lastTransitionTime: "2021-09-29T09:59:28Z"
+    lastUpdateTime: "2021-09-29T10:01:07Z"
+    message: ReplicaSet "kubeserve-86c85f94b8" is progressing.
+    reason: ReplicaSetUpdated
+    status: "True"
+    type: Progressing
+  observedGeneration: 2
+  readyReplicas: 2
+  replicas: 4
+  unavailableReplicas: 2
+  updatedReplicas: 1

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: activity701
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      chapter: 'controllers'
+      activity: '1'
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 150%
+      maxUnavailable: 50%
+      
+  template:
+    metadata:
+      labels:
+        chapter: 'controllers'
+        activity: '1'
+    spec:
+      containers:
+      - name: activity701
+        image: nginx
